@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="QuarryScope BI — Geo-Informatic Business Intelligence Platform for mining equipment trading in Thailand" />
+    <meta name="theme-color" content="#0a0e1a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>QuarryScope BI — Mining Intelligence Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #0a0e1a; }
+      #root { min-height: 100vh; }
+      /* Initial loading screen */
+      .boot-screen {
+        position: fixed; inset: 0; z-index: 9999;
+        background: #0a0e1a;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        font-family: 'Rajdhani', sans-serif;
+        transition: opacity 0.5s ease;
+      }
+      .boot-screen.hide { opacity: 0; pointer-events: none; }
+      .boot-logo {
+        width: 60px; height: 60px; border-radius: 12px;
+        background: linear-gradient(135deg, #06d6a0, #118ab2);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 28px; color: #0a0e1a; font-weight: 700;
+        animation: bootPulse 1.5s ease-in-out infinite;
+      }
+      .boot-text { color: #06d6a0; font-size: 22px; font-weight: 700; letter-spacing: 3px; margin-top: 16px; }
+      .boot-sub { color: #64748b; font-size: 11px; letter-spacing: 2px; margin-top: 6px; font-family: 'IBM Plex Mono', monospace; }
+      .boot-bar { width: 200px; height: 2px; background: #1e293b; border-radius: 1px; margin-top: 24px; overflow: hidden; }
+      .boot-bar-fill { width: 0%; height: 100%; background: #06d6a0; border-radius: 1px; animation: bootLoad 1.8s ease-in-out forwards; }
+      @keyframes bootPulse { 0%,100%{ box-shadow: 0 0 20px #06d6a040; } 50%{ box-shadow: 0 0 40px #06d6a060; } }
+      @keyframes bootLoad { 0%{ width:0% } 40%{ width:60% } 80%{ width:85% } 100%{ width:100% } }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="boot-screen" id="bootScreen">
+        <div class="boot-logo">◆</div>
+        <div class="boot-text">QUARRYSCOPE BI</div>
+        <div class="boot-sub">INITIALIZING GEO-INFORMATIC ENGINE</div>
+        <div class="boot-bar"><div class="boot-bar-fill"></div></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Hide boot screen once React renders
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const bs = document.getElementById('bootScreen');
+          if (bs) { bs.classList.add('hide'); setTimeout(() => bs.remove(), 600); }
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
